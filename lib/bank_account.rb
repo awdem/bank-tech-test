@@ -13,9 +13,9 @@ class BankAccount
   end
 
   def withdraw(amount, date = Time.now)
-    raise 'amount must be below zero' if amount >= 0
+    raise 'amount must be above zero' if amount <= 0
 
-    add_transaction(amount, date)
+    add_transaction(-amount, date)
   end
 
   private 
