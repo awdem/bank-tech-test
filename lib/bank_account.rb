@@ -6,7 +6,9 @@ class BankAccount
     @transactions = []
   end
 
-  def deposit(amount, date)
+  def deposit(amount, date = Time.now)
+    raise 'amount must be above zero' if amount <= 0
+    
     transaction = { amount: amount.round(2), date: date }
     @transactions << transaction
   end

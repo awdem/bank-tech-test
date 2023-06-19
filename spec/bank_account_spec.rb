@@ -1,5 +1,4 @@
 require 'bank_account'
-require 'date'
 
 RSpec.describe 'BankAccount class' do
   let(:account) { BankAccount.new }
@@ -11,7 +10,7 @@ RSpec.describe 'BankAccount class' do
 
   describe '#deposit' do
     context 'given a positive amount and a date' do
-      let(:date) { Date.new(2023, 7, 19) }
+      let(:date) { Time.new(2023, 7, 19) }
 
       it 'adds a transaction hash to @transactions with the amount and date' do
         account.deposit(500, date)
@@ -21,14 +20,14 @@ RSpec.describe 'BankAccount class' do
         ]
       end
 
-      it 'rounds amounts to the hundreth decimal place' do
+      it 'rounds amount to the hundreth decimal place' do
         account.deposit(500.234, date)
 
         expect(account.transactions).to eq [
           { amount: 500.23, date: date }
         ]
       end
-      it 'rounds amounts up' do
+      it 'rounds amount up' do
         account.deposit(500.235, date)
 
         expect(account.transactions).to eq [
@@ -38,20 +37,28 @@ RSpec.describe 'BankAccount class' do
     end
 
     context 'given a positive amount with no date' do
-      xit 'defaults to the current date' do
-        # placeholder
+      it 'defaults to the current date' do
+        today = Time.new(2023, 7, 19)
+
+        allow(Time).to receive(:now).and_return(today)
+
+        account.deposit(500)
+
+        expect(account.transactions).to eq [
+          { amount: 500.00, date: today }
+        ]
       end
     end
 
     context 'given a negative amount' do
-      xit 'raises an error "amount must be above zero"' do
-        # placeholder
+      it 'raises an error "amount must be above zero"' do
+        expect { account.deposit(-1) }.to raise_error 'amount must be above zero'
       end
     end
 
     context 'given 0' do
-      xit 'raises an error "amount must be above zero"' do
-        # placeholder
+      it 'raises an error "amount must be above zero"' do
+        expect { account.deposit(0) }.to raise_error 'amount must be above zero'
       end
     end
   end
