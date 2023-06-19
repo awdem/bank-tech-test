@@ -5,4 +5,9 @@ class BankAccount
   def initialize
     @transactions = []
   end
+
+  def deposit(amount, date)
+    transaction = { amount: amount.round(2), date: date }
+    @transactions << transaction
+  end
 end
