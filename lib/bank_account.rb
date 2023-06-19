@@ -9,13 +9,18 @@ class BankAccount
   def deposit(amount, date = Time.now)
     raise 'amount must be above zero' if amount <= 0
 
-    transaction = { amount: amount.round(2), date: date }
-    @transactions << transaction
+    add_transaction(amount, date)
   end
 
   def withdraw(amount, date = Time.now)
     raise 'amount must be below zero' if amount >= 0
 
+    add_transaction(amount, date)
+  end
+
+  private 
+
+  def add_transaction(amount, date)
     transaction = { amount: amount.round(2), date: date }
     @transactions << transaction
   end
