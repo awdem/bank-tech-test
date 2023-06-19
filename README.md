@@ -28,4 +28,12 @@ date || credit || debit || balance
 
 ## How to install
 
-## H
+- Coming Soon
+
+## How to run
+
+- Coming Soon
+
+## Tests
+
+- Coming Soon
