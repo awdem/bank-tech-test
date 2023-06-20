@@ -7,20 +7,22 @@ Data does not persist between instances of the program running so your transacti
 
 ### Requirements
 
+```plain
 * You should be able to interact with your code via a REPL like IRB or Node.  (You don't need to implement a command line interface that takes input from STDIN.)
 * Deposits, withdrawal.
 * Account statement (date, amount, balance) printing.
 * Data can be kept in memory (it doesn't need to be stored to a database or anything).
+```
 
 ### Acceptance criteria
 
+```plain
 **Given** a client makes a deposit of 1000 on 10-01-2023  
 **And** a deposit of 2000 on 13-01-2023  
 **And** a withdrawal of 500 on 14-01-2023  
 **When** she prints her bank statement  
 **Then** she would see
 
-```
 date || credit || debit || balance
 14/01/2023 || || 500.00 || 2500.00
 13/01/2023 || 2000.00 || || 3000.00
@@ -28,7 +30,6 @@ date || credit || debit || balance
 ```
 
 ## Design
-
 ![Design Doc](design/class_design.png)
 
 ### Modifications/Observations
@@ -41,7 +42,7 @@ I made a few modifications to this design during the implementation:
   that you could theoretically put in out-of-order transactions that wouldn't properly calculate the account balance, or show up in the right order. If I were to go further with this program, I would control
   user input in a UI class that wouldn't allow custom dates to be passed through to these methods. 
 
-## How to install
+## Installation
 
 In your preferred directory:
 
@@ -50,7 +51,7 @@ git clone https://github.com/awdem/bank-tech-test.git
 cd bank-tech-test
 bundle install
 ```
-## How to run
+### How to run
 
 There is currently no user interface, so you have to interact with the program via irb. To do so, launch irb in your console, then input:
 
@@ -67,7 +68,7 @@ formatter = BankStatementFormatter.new
 
 puts formatter.format(account.transactions) 
 ```
-## How to test:
+### How to test:
 
 In the project directory:
 
