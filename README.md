@@ -1,6 +1,7 @@
 # Bank-Tech-Test
 
-Practice tech test for Maker's Academy. 
+Practice tech test for Maker's Academy. A simple bank account program that allows you to make deposits and withdrawals and will print a statement of all the transactions in your account.
+Data does not persist between instances of the program runnning.
 
 ## Specification
 
@@ -30,6 +31,13 @@ date || credit || debit || balance
 
 ![Design Doc](design/class_design.png)
 
+### Modifications
+
+I made a few modifications to this design during the implementation:
+
+- I did not implement a balance variable or method in BankAccount because I decided it was not in the scope of the specifications.
+- The transaction hash now includes the balance of the account after the transaction is done.
+
 ## How to install
 
 In your preferred directory:
@@ -44,20 +52,27 @@ bundle install
 There is currently no user interface, so you have to interact with the program via irb. To do so, launch irb in your console, then input:
 
 ```irb
-# the following commands with set up classes for you to play with:
+# the following lines with set up classes for you to test out methods:
 
 require './lib/bank_account.rb'
 require './lib/bank_statement_formatter.rb'
 account = BankAccount.new
 formatter = BankStatementFormatter.new
 
-# 
-```
-## Tests
+# You can call deposit and withdraw with a number on account to add transactions to your account.
+# To see your statement in the console run:
 
+puts formatter.format(account.transactions) 
+```
+## How to test:
+
+In the project directory:
+
+To run all tests:
 ```zsh
-# to run tests
 rspec
-# to list all tests: 
+```
+To list all tests:
+```zsh
 rspec -f d
 ```
