@@ -21,7 +21,12 @@ class BankAccount
   private 
 
   def add_transaction(amount, date)
-    transaction = { amount: amount.round(2), date: date }
+    balance = self.sum_transaction_amounts + amount
+    transaction = { amount: amount.round(2), date: date, balance: balance.round(2) }
     @transactions << transaction
+  end
+
+  def sum_transaction_amounts
+    @transactions.sum { |transaction| transaction[:amount]}
   end
 end
