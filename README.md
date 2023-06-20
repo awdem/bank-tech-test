@@ -26,14 +26,38 @@ date || credit || debit || balance
 10/01/2023 || 1000.00 || || 1000.00
 ```
 
+## Design
+
+![Design Doc](design/class_design.png)
+
 ## How to install
 
-- Coming Soon
+In your preferred directory:
 
+```zsh
+git clone https://github.com/awdem/bank-tech-test.git
+cd bank-tech-test
+bundle install
+```
 ## How to run
 
-- Coming Soon
+There is currently no user interface, so you have to interact with the program via irb. To do so, launch irb in your console, then input:
 
+```irb
+# the following commands with set up classes for you to play with:
+
+require './lib/bank_account.rb'
+require './lib/bank_statement_formatter.rb'
+account = BankAccount.new
+formatter = BankStatementFormatter.new
+
+# 
+```
 ## Tests
 
-- Coming Soon
+```zsh
+# to run tests
+rspec
+# to list all tests: 
+rspec -f d
+```
