@@ -61,6 +61,12 @@ RSpec.describe 'BankAccount class' do
         expect { account.deposit(0) }.to raise_error 'amount must be above zero'
       end
     end
+
+    context 'given a non-number' do
+      it 'raises an error "amount must be a number"' do
+        expect { account.deposit('banana') }.to raise_error 'amount must be a number'
+      end
+    end
   end
 
   describe '#withdraw' do
@@ -114,6 +120,12 @@ RSpec.describe 'BankAccount class' do
     context 'given 0' do
       it 'raises an error "amount must be below zero"' do
         expect { account.withdraw(0) }.to raise_error 'amount must be above zero'
+      end
+    end
+
+    context 'given a non-number' do
+      it 'raises an error "amount must be a number"' do
+        expect { account.withdraw('banana') }.to raise_error 'amount must be a number'
       end
     end
   end

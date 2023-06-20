@@ -7,13 +7,13 @@ class BankAccount
   end
 
   def deposit(amount, date = Time.now)
-    raise 'amount must be above zero' if amount <= 0
+    validate(amount)
 
     add_transaction(amount, date)
   end
 
   def withdraw(amount, date = Time.now)
-    raise 'amount must be above zero' if amount <= 0
+    validate(amount)
 
     add_transaction(-amount, date)
   end
@@ -28,5 +28,10 @@ class BankAccount
 
   def sum_transaction_amounts
     @transactions.sum { |transaction| transaction[:amount] }
+  end
+
+  def validate(amount)
+    raise 'amount must be a number' unless amount.is_a?(Numeric)
+    raise 'amount must be above zero' if amount <= 0
   end
 end
