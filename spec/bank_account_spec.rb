@@ -16,7 +16,7 @@ RSpec.describe 'BankAccount class' do
         account.deposit(500, date)
 
         expect(account.transactions).to eq [
-          { amount: 500.00, date: date }
+          { amount: 500.00, date: date, balance: 500.00 }
         ]
       end
 
@@ -24,14 +24,14 @@ RSpec.describe 'BankAccount class' do
         account.deposit(500.234, date)
 
         expect(account.transactions).to eq [
-          { amount: 500.23, date: date }
+          { amount: 500.23, date: date, balance: 500.23 }
         ]
       end
       it 'rounds amount up' do
         account.deposit(500.235, date)
 
         expect(account.transactions).to eq [
-          { amount: 500.24, date: date }
+          { amount: 500.24, date: date, balance: 500.24 }
         ]
       end
     end
@@ -45,7 +45,7 @@ RSpec.describe 'BankAccount class' do
         account.deposit(500)
 
         expect(account.transactions).to eq [
-          { amount: 500.00, date: today }
+          { amount: 500.00, date: today, balance: 500.00 }
         ]
       end
     end
@@ -71,7 +71,7 @@ RSpec.describe 'BankAccount class' do
         account.withdraw(500, date)
 
         expect(account.transactions).to eq [
-          { amount: -500.00, date: date }
+          { amount: -500.00, date: date, balance: -500.00 }
         ]
       end
 
@@ -79,14 +79,14 @@ RSpec.describe 'BankAccount class' do
         account.withdraw(500.234, date)
 
         expect(account.transactions).to eq [
-          { amount: -500.23, date: date }
+          { amount: -500.23, date: date, balance: -500.23 }
         ]
       end
       it 'rounds amount up' do
         account.withdraw(500.235, date)
 
         expect(account.transactions).to eq [
-          { amount: -500.24, date: date }
+          { amount: -500.24, date: date, balance: -500.24 }
         ]
       end
     end
@@ -100,7 +100,7 @@ RSpec.describe 'BankAccount class' do
         account.withdraw(500)
 
         expect(account.transactions).to eq [
-          { amount: -500.00, date: today }
+          { amount: -500.00, date: today, balance: -500.00 }
         ]
       end
     end
