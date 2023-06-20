@@ -115,6 +115,6 @@ RSpec.describe 'BankAccount class' do
       it 'raises an error "amount must be below zero"' do
         expect { account.withdraw(0) }.to raise_error 'amount must be above zero'
       end
-    end   
+    end
   end
 end
