@@ -1,7 +1,7 @@
 # Bank-Tech-Test
 
 Practice tech test for Maker's Academy. A simple bank account program that allows you to make deposits and withdrawals and will print a statement of all the transactions in your account.
-Data does not persist between instances of the program runnning.
+Data does not persist between instances of the program running so your transactions will disappear when you close the REPL.
 
 ## Specification
 
@@ -31,12 +31,15 @@ date || credit || debit || balance
 
 ![Design Doc](design/class_design.png)
 
-### Modifications
+### Modifications/Observations
 
 I made a few modifications to this design during the implementation:
 
 - I did not implement a balance variable or method in BankAccount because I decided it was not in the scope of the specifications.
-- The transaction hash now includes the balance of the account after the transaction is done.
+- The transaction hash now includes the balance of the account after the transaction is added.
+- The date parameter in #deposit and #withdraw defaults to the current date/time, but it can also be passed in to mimic the acceptance criteria. This means
+  that you could theoretically put in out-of-order transactions that wouldn't properly calculate the account balance, or show up in the right order. If I were to go further with this program, I would control
+  user input in a UI class that wouldn't allow custom dates to be passed through to these methods. 
 
 ## How to install
 
