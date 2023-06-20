@@ -15,8 +15,13 @@ class BankStatementFormatter
 
   def create_transaction_string(transaction)
     transaction_date = transaction[:date].strftime('%d/%m/%Y')
-    transaction_amount = sprintf('%.2f', transaction[:amount])
+    transaction_amount = sprintf('%.2f', transaction[:amount].abs)
     transaction_balance = sprintf('%.2f', transaction[:balance])
-    transaction_string = "#{transaction_date} || #{transaction_amount} || || #{transaction_balance}\n"
+
+    if transaction[:amount].positive?
+      "#{transaction_date} || #{transaction_amount} || || #{transaction_balance}\n"
+    else
+      "#{transaction_date} || || #{transaction_amount} || #{transaction_balance}\n"
+    end
   end
 end

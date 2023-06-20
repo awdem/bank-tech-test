@@ -2,8 +2,8 @@ require 'bank_account'
 require 'bank_statement_formatter'
 
 RSpec.describe 'Integration' do
-  context 'given several dated deposits and one withdrawal' do
-    xit 'returns a multi-line string of the bank statement' do
+  context 'given several deposits and one withdrawal' do
+    it 'returns a formatted bank statement' do
       account = BankAccount.new
 
       account.deposit(1000, Time.new(2023, 1, 10))
