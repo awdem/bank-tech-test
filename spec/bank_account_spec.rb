@@ -129,4 +129,18 @@ RSpec.describe 'BankAccount class' do
       end
     end
   end
+
+  describe '#get_balance' do
+    it 'returns 0 for an account with no transactions' do
+      expect(account.get_balance).to eq 0
+    end
+
+    it 'returns the balance of an account with several transactions' do
+      account.deposit(1000)
+      account.withdraw(500)
+      account.withdraw(200)
+
+      expect(account.get_balance).to eq 300
+    end
+  end
 end

@@ -18,6 +18,10 @@ class BankAccount
     add_transaction(-amount, date)
   end
 
+  def get_balance
+    sum_transaction_amounts
+  end
+
   private
 
   def add_transaction(amount, date)
