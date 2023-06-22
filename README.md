@@ -29,19 +29,30 @@ date || credit || debit || balance
 10/01/2023 || 1000.00 || || 1000.00
 ```
 
-## Design
+## Approach
+
+Here is a summary of my approach:
+- I started by extracting the necessary features from the spec and using that to design a two-class system. I considered a third Transaction class, but decided it was unnecessary to meet the spec.
+### Design
 _________
 ![Design Doc](design/class_design.png)
 _________
-### Modifications/Observations
+- I tried to adhere to the Single Responsibility Principle (SRP) in my class design by separating the responsibility for the account state and the statement formatting into different classes. Likewise, each method has one responsibility, and, where possible I've tried to encapsulate method logic into private methods so that it is easy to re-use and change.
+- I used Test Driven Development, (TDD), to implement my design.
+
+### Modifications
 
 I made a few modifications to this design during the implementation:
 
-- I did not implement a balance variable or method in BankAccount because I decided it was not in the scope of the specifications.
+- I didn't implement a balance variable as appears in the BankAccount interface, because I decided it was redundant since the transactions already hold the same information. I did, however, implement a get_balance method that returns the sum of the transaction amounts. This is beyond the scope of the specifications, but it felt weird to make a bank account class that couldn't directly tell you its balance, and it re-uses logic that was necessary for meeting the spec, anyway.
 - The transaction hash now includes the balance of the account after the transaction is added.
-- The date parameter in #deposit and #withdraw defaults to the current date/time, but it can also be passed in to mimic the acceptance criteria. This means
+
+### Observations
+
+- The date parameter in #deposit and #withdraw defaults to the current date/time, but a Time object can also be passed in to mimic the acceptance criteria. This means
   that you could theoretically put in out-of-order transactions that wouldn't properly calculate the account balance, or show up in the right order. If I were to go further with this program, I would control
   user input in a UI class that wouldn't allow custom dates to be passed through to these methods. 
+- if I were, to continue this project, I would make the transaction hashes into their own class - that would further separate responsibilities, encapsulate data, and make it easier to implement changes down the line. For example, if you needed to add more information to a transaction, you'd only have to modify the class.
 
 ## Example of Program Running
 Below is an example of the program running in IRB:
@@ -69,7 +80,7 @@ require './lib/bank_statement_formatter.rb'
 account = BankAccount.new
 formatter = BankStatementFormatter.new
 
-# You can call deposit and withdraw with a number on account to add transactions to your account.
+# You can call deposit and withdraw with a number on account to add transactions to your account. You can call get_balance to return your current balance.
 # To see your statement in the console run:
 
 puts formatter.format(account.transactions) 
