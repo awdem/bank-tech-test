@@ -30,8 +30,9 @@ date || credit || debit || balance
 ```
 
 ## Design
+_________
 ![Design Doc](design/class_design.png)
-
+_________
 ### Modifications/Observations
 
 I made a few modifications to this design during the implementation:
@@ -42,6 +43,11 @@ I made a few modifications to this design during the implementation:
   that you could theoretically put in out-of-order transactions that wouldn't properly calculate the account balance, or show up in the right order. If I were to go further with this program, I would control
   user input in a UI class that wouldn't allow custom dates to be passed through to these methods. 
 
+## Example of Program Running
+Below is an example of the program running in IRB:
+____________
+![program run](images/example_program_run.png)
+____________
 ## Installation
 
 In your preferred directory:
